@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>femboy-meter</h1>
+    <hr>
+    <a href="https://github.com/MeowerBots/jaxon_bots/tree/main/femboy-meter">github</a> / <a href="https://linktr.ee/jaxonbaxon">my linktree</a> / <a href="https://github.com/MeowerBots/jaxon_bots/labels/femboy-meter">issues</a> / <a href="/">back</a>
+    <ul>
+        <li><a href="#info">info</a></li>
+        <li><a href="#get-started">get started</a></li>
+        <li><a href="#meter-a">meter</a></li>
+        <ul>
+            <li><a href="#meter">meter</a></li>
+            <li><a href="#find">find</a></li>
+        </ul>
+        <li><a href="#currency">currency</a></li>
+        <ul>
+            <li><a href="#trade">trade</a></li>
+            <li><a href="#buy">buy</a></li>
+            <li><a href="#equip">equip</a></li>
+            <li><a href="#unequip">unequip</a></li>
+        </ul>
+        <li><a href="#readonly">readonly commands</a></li>
+        <ul>
+            <li><a href="#shop">shop</a></li>
+            <li><a href="#update">update</a></li>
+            <li><a href="#info">info</a></li>
+            <li><a href="#help">help</a></li>
+            <li><a href="#fembucks">fembucks</a></li>
+            <li><a href="#items">items</a></li>
+            <li><a href="#equipped">equipped</a></li>
+            <ul>
+                <li><a href="#stocks">stocks</a></li>
+                <li><a href="#notify">notify</a></li>
+            </ul>
+        </ul>
+        <li><a href="#events">events</a></li>
+    </ul>
+    <h2 id="info">info</h3>
+    <ul>
+        <li>femboy-meter's prefix is "<code>fem.</code>", so for example "<code><a href="#update">fem.update</a></code>"</li>
+        <li>the official currency for femboy-meter is fembucks</li>
+        <li>your meter points cannot exceed 100 or go below 0</li>
+        <li>this is still a work in progress, please respect the time it takes to get out an update.</li>
+    </ul>
+    <h2 id="get-started">get started</h2>
+    <p>to get into the database for femboy-meter (and have all of the other commands work), run "<code><a href="#meter">fem.meter</a></code>". this command will show you your current femboy percentage as well as put you in the database.</p>
+    <h2 id="meter-a">meter</h2>
+    <h3 id="meter">meter</h3>
+    <p>update your femboy meter. ex: "<code>fem.meter</code>" would either send:
+    <ol>
+        <li>a random number (if your username isn't in the database)</li>
+        <li>a tweaked (increments or decrements by a random number through -10 and 10) version of your femboy meter</li>
+    </ol></p>
+    <h3 id="find">find</h3>
+    <p>look at your own or someone else's femboy meter (without changing it). ex: "<code>fem.find &lt;username&gt;</code>" would either send:
+    <ol>
+        <li>someone else's femboy meter</li>
+        <li>your own femboy meter without changes or tweaks (if the first argument is your username)</li>
+    </ol></p>
+    <h2 id="currency">currency</h2>
+    <h3 id="trade">trade</h3>
+    <p><code>[1 minute cooldown]</code> trade your points from the femboy meter to fembucks based on the current <a href="#stocks">stocks</a>. ex: "<code>fem.trade</code>" would either send:
+    <ol>
+        <li>conformation message that you have indeed traded your meter points for currency</li>
+        <li>error message (not enough meter points to trade)</li>
+        <li>error message (1 min cooldown)</li>
+    </ol></p>
+    <h3 id="buy">buy</h3>
+    <p>buy an item off of <a href="#shop">shop</a> using fembucks.. ex: "<code>fem.buy &lt;item&gt;</code>" would either send:
+    <ol>
+        <li>conformation message that you have bought the item</li>
+        <li>error message (not enough fembucks)</li>
+        <li>error message (non-existant item)</li>
+    </ol></p>
+    <h3 id="equip">equip</h3>
+    <p>equip an item you have. ex: "<code>fem.equip &lt;item&gt;</code>" would either send:
+    <ol>
+        <li>conformation message that you have equipped the item (randomized)</li>
+        <li>error message (you do not have the item)</li>
+        <li>error message (you already have something like the item equipped)</li>
+    </ol></p>
+    <p>this command will also raise your femboy meter points or decrease them.</p>
+    <h3 id="unequip">unequip</h3>
+    <p>unequip an item you have equipped. ex: "<code>fem.unequip &lt;item&gt;</code>" would either send:
+    <ol>
+        <li>conformation message that you have unequipped the item (randomized)</li>
+        <li>error message (you do not have an item like that equipped)</li>
+    </ol></p>
+    <p>this command will also decrease your femboy meter by half of what it was raised/decreased.</p>
+    <h2 id="readonly">readonly commands</h2>
+    <h3 id="shop">shop</h3>
+    <p>will return the current shop items you can buy. ex: "<code>fem.shop</code>"</p>
+    <h3 id="update">update</h3>
+    <p>get current update + notes on update. ex: "<code>fem.update</code>"</p>
+    <h3 id="info">info</h3>
+    <p>get info on runtime. ex: "<code>fem.info</code>"</p>
+    <h3 id="help">help</h3>
+    <p>send a link to this website. ex: "<code>fem.help</code>"</p>
+    <h3 id="fembucks">fembucks</h3>
+    <p>view your current amount of fembucks. ex: "<code>fem.fembucks</code>"</p>
+    <h3 id="items">items</h3>
+    <p>look at all of your items (that you don't have equipped). ex: "<code>fem.items</code>" would either send:
+    <ol>
+        <li>all of your items</li>
+        <li>error message (you have no items)</li>
+    </ol></p>
+    <h3 id="equipped">equipped</h3>
+    <p>get all of your items you have equipped/if you have an item equipped. ex: "<code>fem.equipped &lt;item: <i>optional</i>&gt;</code>"</p>
+    <h3 id="stocks">stocks</h3>
+    <p>see current stocks for selling points and fembucks back. ex: "<code>fem.stocks</code>"</p>
+    <h3 id="notify">notify</h3>
+    <p>set if notifications for lucky stock are true or false. ex: "<code>fem.notify</code>"</p>
+    <h2 id="events">events</h2>
+    <ul>
+        <li>database auto-saves every 5 seconds</li>
+        <li>the <a href="#stocks">current stocks</a> are updated with a random value every 30 seconds</li>
+        <ul>
+            <li>sell: 0 - 20</li>
+            <li>return: 5 - 25</li>
+        </ul>
+        <li>random% interest to fembucks is added to every user in database every 60 minutes/1 hour</li>
+        <ul>
+            <li>random: 1 - 10</li>
+        </ul>
+    </ul>
+</body>
+
+</html>

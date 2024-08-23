@@ -1,0 +1,13 @@
+.shade {
+    color: grey;
+    font-style: italic;
+}
+
+* {
+    font-smooth: never;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+code {
+    font-family: monospace;
+}

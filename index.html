@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1>jaxon's bots</h1>
+    <hr>
+    <a href="https://github.com/MeowerBots/jaxon_bots">github</a> / <a href="https://linktr.ee/jaxonbaxon">my linktree</a> / <a href="https://github.com/MeowerBots/jaxon_bots/issues">issues</a>
+    <ul>
+        <li><a href="#intro">introduction</a></li>
+        <li><a href="#bots">bots</a></li>
+        <ul>
+            <li><a href="#botlist">bot list</a></li>
+            <ul>
+                <li><a href="#femboy">femboy-meter</a></li>
+            </ul>
+            <li><a href="#req">requirements</a></li>
+            <li><a href="#information">info</a></li>
+        </ul>
+        <li><a href="#wrapper">mwrapper</a></li>
+        <ul>
+            <li><a href="#raq">requirements</a></li>
+            <li><a href="#docs">documentation</a></li>
+            <ul>
+                <li><a href="#getstart">getting started</a></li>
+                <li><a href="#events">events</a></li>
+                <li><a href="#command">commands</a></li>
+                <li><a href="#post">posting</a></li>
+                <li><a href="#retrieve">getting api data</a></li>
+            </ul>
+            <li><a href="#use">usage</a></li>
+            <li><a href="#planned">planned features</a></li>
+        </ul>
+        <li><a href="#info">information</a></li>
+    </ul>
+    <h2 id="intro">introduction</h2>
+    <p>hello, and welcome to jaxon's bots for meower! this is where i'll be hosting documentation for my bots, information on mwrapper, and more goodies. everything on here is free for you to use, so if you're confused on anything you can simply look it up.</p>
+    <h2 id="bots">bots</h2>
+    <p>this section is for my bots. if you want to, you can use the source code for each for a basis of your bot (but don't directly copy my bot, as that's considered stealing ❤️)</p>
+    <h3 id="botlist">bot list</h3>
+    <h4 id="femboy">femboy-meter</h4>
+    <p><a href="femboy.html">femboy-meter</a> is a fun and games bot i'm developing that's based around being a femboy and trading your femboy-ness for the currency, "fembucks". this bot is really just a test of my abilities as a coder, and a basis of code for understanding <a href="#wrapper">mwrapper</a>.</p>
+    <h3 id="req">requirements</h3>
+    <p>most of my bots will rely on:</p>
+    <ul>
+        <li><a href="#wrapper">mwrapper</a></li>
+        <li><a href="https://www.npmjs.com/package/lowdb">lowdb</a></li>
+        <li><a href="https://nodejs.org/api/path.html">NodeJS' path</a></li>
+        <li><a href="https://nodejs.org/api/url.html">NodeJS' url</a></li>
+    </ul>
+    <p>my bots are almost always on ESM (which means "<code>import</code>" can be used).</p>
+    <h3 id="information">info</h3>
+    <p>documentation for each of these bots can be found by going to the bot list and looking for the bot, then clicking on the link referencing its name in the description. this will take you to the documentation for said bot, as well as allow you to go to a different issues/github page.</p>
+    <h2 id="wrapper">mwrapper</h2>
+    <p><a href="https://github.com/MeowerBots/jaxon_bots/blob/main/wrapper.cjs">mwrapper</a> is a custom wrapper i made for meower. it uses CommonJS (meaning you can use "<code>require()</code>") and it is quite simple to use.</p>
+    <h3 id="raq">requirements</h3>
+    <p>to run and use mwrapper, you need to have:</p>
+    <ul>
+        <li><a href="https://www.npmjs.com/package/ws">ws</a></li>
+        <li><a href="https://nodejs.org/api/events.html">NodeJS's events</a></li>
+        <li><a href="https://www.npmjs.com/package/node-fetch">node-fetch</a></li>
+    </ul>
+    <p>once you have all of these packages installed or ready, you can now use mwrapper to connect to meower or make a bot.</p>
+    <h3 id="documentation">docs</h3>
+    <h4 id="getstart">getting started</h4>
+    <p>here is a simple script you can base off of.</p>
+    <pre>
+        <code>
+            // import mwrapper's "Bot" class
+            import pkg from './wrapper.cjs';
+            const { Bot } = pkg;
+            // make a new bot
+            const bot = new Bot('username', process.env.PASS)
+            // event handlers for bot events
+            bot.on('ready', () => {
+                console.log('Bot is ready!');
+            })
+
+            bot.on('error', (err) => {
+                console.log(err);
+            })
+
+            bot.on('post', (message) => {
+                // parse the message object with a prefix, in this case 'r;'
+                let parsed = bot.parse(message, 'r;')
+                if (parsed.command == 'ping') {
+                    // post to message context
+                    bot.post('Pong!', message.origin)
+                }
+            })
+            // initialize bot
+            bot.login()
+        </code>
+    </pre>
+    <h4 id="events">events</h4>
+    <ul>
+        <li>ready - called when bot logs in</li>
+        <li>close - sent when the connection to the websocket is closed</li>
+        <li>message - a general handler for ws messages</li>
+        <li>post - made when a post that is accessable to the bot is sent</li>
+        <li>error - called when an error in ws happens</li>
+    </ul>
+    <h4 id="command">commands</h4>
+    <p>commands can be handled by passing a message object to "<code>bot.parse()</code>" and a prefix. this returns a parsed object, which contains "<code>.command</code>", which is the command ran, and "<code>.args</code>", which is an array with all of the arguments from the command. this can be used to parse a message for a command.</p>
+    <h4 id="post">posting</h4>
+    <p>the "<code>bot.post()</code>" command has 2 arguments, "<code>message</code>" and "<code>origin</code>". the origin argument is either "<code>home</code>" or a chatid, which can be received from a message object by "<code>message.origin</code>".</p>
+    <h4 id="retrieve">getting api data</h4>
+    <p>api data can be retrieved by "<code>bot.get()</code>". the first argument could be something like "<code>ulist</code>", in which if that were to run it would return the current user list on meower.</p>
+    <h3 id="use">usage</h3>
+    <p>you may use mwrapper with the following conditions:</p>
+    <ol>
+        <li>you credit me (jaxonbaxon#7560) for mwrapper</li>
+        <li>at least acknowledge that you are using mwrapper</li>
+    </ol>
+    <h3 id="planned">planned features</h3>
+    <ul>
+        <li>editing messages</li>
+        <li>meowing/liking messages</li>
+        <li>playing audio</li>
+        <li class="shade">sending media (indev)</li>
+    </ul>
+    <h2 id="info">information</h2>
+    <p>all of my bots and mwrapper are still a work in progress and will have many versions and your code might get outdated over time. if you're making a bot with mwrapper or using my bots make sure that you're using the right versions according to the <a href="https://github.com/MeowerBots/jaxon_bots">github</a>.</p>
+</body>
+
+</html>
